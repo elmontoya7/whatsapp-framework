@@ -8,6 +8,9 @@ from yowsup.layers.network import YowNetworkLayer
 
 from app.layer import MacLayer
 
+#index has a webpy server config
+from routes import index
+
 # Uncomment to log
 #logging.basicConfig(level=logging.DEBUG)
 
@@ -41,7 +44,7 @@ class MacStack(object):
         except KeyboardInterrupt:
             print("\nYowsdown")
             sys.exit(0)
-            
+
 def run_infinite():
     while True:
         try:
@@ -55,3 +58,6 @@ def run_infinite():
 if __name__ == "__main__":
     c = MacStack()
     c.start()
+    #init webpy server from index
+    print("Initializing server...")
+    index.init_server()

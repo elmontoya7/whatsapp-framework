@@ -7,5 +7,5 @@ credentials = dict(
 # Add them here
 contacts = {
     "CONTACT_PHONE": "CONTACT_NAME",
-    "ANOTHER_CONTACT_PHONE": "ANOTHER_CONTACT_NAME",
+    "ANOTHER_CONTACT_PHONE": "ANOTHER_CONTACT_NAME"
 }

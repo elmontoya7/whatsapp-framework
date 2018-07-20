@@ -25,7 +25,7 @@ class MacLayer(YowInterfaceLayer):
 
     def __init__(self):
         super(MacLayer, self).__init__()
-    
+
     @ProtocolEntityCallback("success")
     def on_success(self, success_entity):
         mac.set_entity(self)
@@ -44,13 +44,13 @@ class MacLayer(YowInterfaceLayer):
         pass
         #print("Sync error:")
         #print(error_sync_iq_entity)
-        
-    
+
+
     @ProtocolEntityCallback("receipt")
     def on_receipt(self, entity):
         self.toLower(entity.ack())
         signals.receipt.send(Receipt(entity))
-    
+
 
     @ProtocolEntityCallback("ack")
     def onAck(self, entity):
@@ -61,22 +61,22 @@ class MacLayer(YowInterfaceLayer):
         #if entity.getClass() == "message":
             #print(entity.getId(), "Sent")
             #self.notifyInputThread()
-            
+
 
     @ProtocolEntityCallback("message")
     def on_message(self, message_entity):
         # Set received (double v) and add to ack queue
         mac.receive_message(self, message_entity)
-        
+
         # Make message
         message = Message(message_entity)
         if message.valid:
             signals.message_received.send(message)
             if helper.is_command(message.message):
                 signals.command_received.send(message)
-            
+
         mac.disconnect(self)
-            
+
     def send_message_signal(self, message_entity):
         message = Message(message_entity)
         signals.message_received.send(message)
@@ -84,7 +84,7 @@ class MacLayer(YowInterfaceLayer):
             signals.command_received.send(message)
 
 '''
-Just ignore everything above 
+Just ignore everything above
 ################################################################################
 ################################################################################
 '''
